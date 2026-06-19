@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniPhone</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="phone">
+    <div class="top-bar">
+      <span id="hora">12:00</span>
+      <div class="status">
+        <span>📶</span>
+        <span>🔋100%</span>
+      </div>
+    </div>
+
+    <div class="screen">
+
+    <div id="home" class="page active">
+
+      <div id="page1" class="page active">
+        <div class="logo-screen">
+          <h1>📱 MiniPhone</h1>
+          <p>Bienvenido</p>
+        </div>
+      </div>
+
+      <div id="page2" class="page">
+
+        <div class="apps">
+
+          <button class="app" onclick="openApp('calc')">🧮<p>Calculadora</p></button>
+          <button class="app" onclick="openApp('notes')">📝<p>Notas</p></button>
+          <button class="app" onclick="openApp('clock')">⏰<p>Reloj</p></button>
+          <button class="app" onclick="openApp('camera')">📷<p>Cámara</p></button>
+          <button class="app" onclick="openApp('music')">🎵<p>Música</p></button>
+          <button class="app" onclick="openApp('weather')">🌦️<p>Clima</p></button>
+
+        </div>
+
+      </div>
+
+      <div id="page3" class="page">
+
+        <div class="apps">
+
+          <button class="app" onclick="openApp('chat')">💬<p>Chat</p></button>
+          <button class="app" onclick="openApp('ai')">🧠<p>IA</p></button>
+          <button class="app" onclick="openApp('games')">🎮<p>Snake</p></button>
+          <button class="app" onclick="openApp('settings')">⚙️<p>Ajustes</p></button> 
+          <button class="app" onclick="openApp('maps')">🗺️<p>Mapas</p></button>
+          <button class="app" onclick="openApp('flashlight')">🔦<p>Linterna</p></button>
+
+        </div>
+
+      </div>
+
+      <div class="page-buttons">
+        <button onclick="prevPage()">◀</button>
+        <button onclick="nextPage()">▶</button>
+      </div>
+
+    </div>
+
+
+      <div id="calc" class="page">
+    <button class="back" onclick="goHome()">← Inicio</button>
+    <h2>Calculadora</h2>
+    <input type="number" id="n1" placeholder="Número 1">
+    <input type="number" id="n2" placeholder="Número 2">
+    <button onclick="sumar()">➕</button>
+    <button onclick="restar()">➖</button>
+    <button onclick="multiplicar()">✖️</button>
+    <button onclick="dividir()">➗</button>
+    <button onclick="limpiarCalc()">AC</button>
+    <h3 id="resultado">Resultado:</h3>
+      </div>
+      
+    <div id="camera" class="page">
+      <button onclick="goHome()">← Inicio</button>
+      <h2>Cámara</h2>
+      <p>📷 Cámara simulada</p>
+      <button type="button" onclick="openCamera()">▶ Foto</button>
+    </div>
+      
+    <div id="calendar" class="page">
+     <button class="back" onclick="goHome()">← Inicio</button>
+     <h2>Calendario</h2>
+     <div id="calendarBox" class="calendar"></div>
+    </div>
+    
+    <div id="music" class="page">
+      <button onclick="goHome()">← Inicio</button>
+      <h2>Música</h2>
+      <p id="music">Nada reproduciéndose</p>
+      <button type="button" onclick="playMusic()">▶ Play</button>
+    </div>
+    
+    <div id="weather" class="page">
+      <button onclick="goHome()">← Inicio</button>
+      <h2>Clima</h2>
+      <p id="weatherText">--</p>
+      <button type="button" onclick="fakeWeather()">Actualizar</button>
+    </div>
+
+    <div id="chat" class="page">
+      <button onclick="goHome()">← Inicio</button>
+      <h2>Chat</h2>
+      <div id="chatBox"></div>
+      <input id="msg" placeholder="Mensaje">
+      <button onclick="sendMessage()">Enviar</button>
+    </div>
+    
+    <div id="ai" class="page">
+      <button onclick="goHome()">← Inicio</button>
+      <h2>IA</h2>
+      <input id="aiInput" placeholder="Pregunta">
+      <button onclick="askAI()">Preguntar</button>
+      <p id="aiOut"></p>
+    </div>
+
+      <div id="notes" class="page">
+        <button class="back" onclick="goHome()">← Inicio</button>
+        <h2>Notas</h2>
+        <textarea placeholder="Escribe algo..."></textarea>
+      </div>
+      
+      <div id="flashlight" class="page">
+       <button class="back" onclick="goHome()">← Inicio</button>
+       <h2>Linterna</h2>
+       <div class="flash-container">
+       <button onclick="toggleFlash()">Encender / Apagar</button>
+       </div>
+      </div>
+      
+      <div id="games" class="page">
+        <button class="back" onclick="goHome()">← Inicio</button>
+        <h2>Juegos</h2>
+        <h2>🐍 Snake</h2>
+        <div id="score">Puntos: 0</div>
+        <canvas id="game" width="300" height="300"></canvas>
+        <div class="buttons">
+        <button onclick="startGame()">▶ Start</button>
+        <button onclick="restartGame()">🔄 Reiniciar</button>
+        </div>
+      </div>
+      
+      <div id="maps" class="page">
+        <button class="back" onclick="goHome()">← Inicio</button>
+        <h2>Mapas</h2>
+        <div class="mapa">
+    
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.058559374489!2d2.1575014530163727!3d41.381895147990456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a371f0521cc9%3A0xcdabe916e035207e!2sCoding%20Giants%20Espa%C3%B1a!5e0!3m2!1ses!2ses!4v1781549220344!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+   
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!..."
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy">
+    </iframe>
+
+</div>
+      </div>
+
+      <div id="clock" class="page">
+        <button class="back" onclick="goHome()">← Inicio</button>
+        <h2>Reloj</h2>
+        <h1 id="clockTime">
+          00:00:00
+        </h1>
+      </div>
+
+      <div id="settings" class="page">
+        <button class="back" onclick="goHome()">← Inicio</button>
+        <h2>Ajustes</h2>
+        <button onclick="darkMode()">🌙 Modo oscuro</button>
+        <button onclick="lightMode()">☀️ Modo claro</button>
+        
+<div class="screen">
+
+    <div class="panel">
+
+        <h2>Wallpapers</h2>
+
+        <button onclick="ponerWallpaper('coding')">🖥️ Coding Giants</button>
+        <button onclick="ponerWallpaper('space')">🚀 Espacio</button>
+        <button onclick="ponerWallpaper('city')">🌆 Ciudad</button>
+        <button onclick="ponerWallpaper('mountain')">🏔️ Montaña</button>
+        <button onclick="ponerWallpaper('ocean')">🌊 Océano</button>
+        <button onclick="ponerWallpaper('gaming')">🎮 Gaming</button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function ponerWallpaper(tipo){
+
+    let screen = document.querySelector(".screen");
+
+    let imagen = "";
+
+    if(tipo == "coding"){
+        imagen = "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200";
+    }
+
+    if(tipo == "space"){
+        imagen = "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=1200";
+    }
+
+    if(tipo == "city"){
+        imagen = "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200";
+    }
+
+    if(tipo == "mountain"){
+        imagen = "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200";
+    }
+
+    if(tipo == "ocean"){
+        imagen = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200";
+    }
+
+    if(tipo == "gaming"){
+        imagen = "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200";
+    }
+
+
+    screen.style.backgroundImage = `url("${imagen}")`;
+    screen.style.backgroundSize = "cover";
+    screen.style.backgroundPosition = "center";
+
+}
+</script>
+      </div>
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
